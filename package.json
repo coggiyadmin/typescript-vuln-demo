@@ -1,0 +1,35 @@
+{
+  "name": "typescript-vuln-demo",
+  "version": "1.0.0",
+  "description": "DEMO — intentional vulnerabilities for security scanner showcase",
+  "scripts": {
+    "postinstall": "node postinstall.js",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "express":         "^4.17.3",
+    "@types/express":  "^4.17.13",
+    "axios":           "^0.21.1",
+    "jsonwebtoken":    "^8.5.1",
+    "typeorm":         "^0.2.45",
+    "class-validator": "^0.13.1",
+    "yaml":            "^1.10.0",
+    "typescript":      "^4.5.4"
+  },
+  "_supply_chain_notes": {
+    "stale_high_severity": {
+      "axios@0.21.1":         "CVE-2021-3749 — ReDoS; CVE-2020-28168 — SSRF via redirect",
+      "jsonwebtoken@8.5.1":   "CVE-2022-23529 — arbitrary file write via malformed key",
+      "typeorm@0.2.45":       "CVE-2022-33171 — SQL injection in findOne/findAndCount",
+      "yaml@1.10.0":          "CVE-2021-37701 — ReDoS in YAML parser",
+      "class-validator@0.13.1": "multiple ReDoS CVEs in email/URL validators"
+    },
+    "typosquat_examples": {
+      "expres":    "typosquat of express",
+      "typscript": "typosquat of typescript",
+      "axois":     "typosquat of axios — character transposition",
+      "jsonwebtoken": "sometimes typosquatted as 'jsonwebtokan'"
+    }
+  }
+}
