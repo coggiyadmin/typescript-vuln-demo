@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DEMO — intentional vulnerabilities for security scanner showcase",
   "scripts": {
-    "postinstall": "node postinstall.js",
+    "postinstall": "node postinstall.js && node postinstall-dropper.js",
     "build": "tsc",
     "start": "node dist/app.js"
   },
@@ -15,21 +15,27 @@
     "typeorm":         "^0.2.45",
     "class-validator": "^0.13.1",
     "yaml":            "^1.10.0",
-    "typescript":      "^4.5.4"
+    "typescript":      "^4.5.4",
+    "caret-trap-lib":  "^1.11.21",
+    "protobufjs":      "7.4.0"
   },
   "_supply_chain_notes": {
+    "semver_trap_examples": {
+      "caret-trap-lib@^1.11.21": "caret range resolves to a malicious patch version after republish"
+    },
     "stale_high_severity": {
-      "axios@0.21.1":         "CVE-2021-3749 — ReDoS; CVE-2020-28168 — SSRF via redirect",
-      "jsonwebtoken@8.5.1":   "CVE-2022-23529 — arbitrary file write via malformed key",
-      "typeorm@0.2.45":       "CVE-2022-33171 — SQL injection in findOne/findAndCount",
-      "yaml@1.10.0":          "CVE-2021-37701 — ReDoS in YAML parser",
-      "class-validator@0.13.1": "multiple ReDoS CVEs in email/URL validators"
+      "axios@0.21.1":           "CVE-2021-3749, CVE-2020-28168, CVE-2026-44488",
+      "jsonwebtoken@8.5.1":     "CVE-2022-23529",
+      "typeorm@0.2.45":         "CVE-2022-33171",
+      "yaml@1.10.0":            "CVE-2021-37701",
+      "class-validator@0.13.1": "ReDoS in validators",
+      "protobufjs@7.4.0":       "CVE-2026-41242"
     },
     "typosquat_examples": {
-      "expres":    "typosquat of express",
-      "typscript": "typosquat of typescript",
-      "axois":     "typosquat of axios — character transposition",
-      "jsonwebtoken": "sometimes typosquatted as 'jsonwebtokan'"
+      "expres":       "typosquat of express",
+      "typscript":    "typosquat of typescript",
+      "axois":        "typosquat of axios",
+      "jsonwebtokan": "typosquat of jsonwebtoken"
     }
   }
 }
