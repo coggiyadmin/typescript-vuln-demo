@@ -1,0 +1,6 @@
+{
+  "name": "app-ts",
+  "license": "MIT",
+  "dependencies": { "lodash": "4.17.21" },
+  "_resolvedLicenses": { "lodash": "MIT" }
+}
