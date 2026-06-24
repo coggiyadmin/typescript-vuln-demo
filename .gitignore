@@ -1,0 +1,9 @@
+# TypeScript / Node build artifacts
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# editor / backup
+*.swp
+*.bak
