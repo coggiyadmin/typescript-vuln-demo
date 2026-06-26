@@ -1,12 +1,8 @@
 const express = require('express');
 const { exec } = require('child_process');
 const app = express();
-const { exec } = require('child_process');
-app = Flask(__name__)
 app.get('/x', (req, res) => {
-    t = String(req.query.q ?? '')
-    t = encodeURIComponent(t)
-    exec("grep " + t + " /var/log/app.log", () => res.end('ok'))
-
+  const t = String(req.query.q ?? '');
+  exec('grep', [t, '/var/log/app.log'], () => res.end('ok')); // argv safe
 });
 module.exports = app;

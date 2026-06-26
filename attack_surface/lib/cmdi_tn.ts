@@ -1,6 +1,5 @@
 const { exec } = require('child_process');
-function public_run(user_supplied: str) -> None:
-    """Library API — param is NOT an HTTP entry point (TN)."""
-    subprocess.call("grep " + user_supplied, shell=True)  # SINK same shape, no route
-
-module.exports = { public_run: public_run };
+function publicRun(userSupplied) {
+  exec('grep ' + userSupplied, () => {}); // TN — no HTTP entry
+}
+module.exports = { publicRun };

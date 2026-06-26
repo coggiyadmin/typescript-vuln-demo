@@ -1,11 +1,7 @@
 const express = require('express');
-const { exec } = require('child_process');
-const sqlite3 = require('sqlite3');
-const app = express();
 const fs = require('fs');
-app = Flask(__name__)
-app.get("/f")
-(req, res) => {
-    open("/data/" + req.query("p", "")).read()
-
+const app = express();
+app.get('/f', (req, res) => {
+  fs.readFile('/data/' + String(req.query.p ?? ''), 'utf8', (err, data) => res.send(data || ''));
+});
 module.exports = app;

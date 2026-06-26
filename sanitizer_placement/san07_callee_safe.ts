@@ -1,11 +1,9 @@
 const express = require('express');
 const { exec } = require('child_process');
 const app = express();
-const { exec } = require('child_process');
-app = Flask(__name__)
-def sink(v): exec("grep " + v + " /var/log/app.log", () => res.end('ok'))
+function sink(v) { exec('grep', [v, '/var/log/app.log'], () => {}); }
 app.get('/x', (req, res) => {
-    sink(encodeURIComponent(String(req.query.q ?? '')))
-
+  sink(String(req.query.q ?? ''));
+  res.end('ok');
 });
 module.exports = app;

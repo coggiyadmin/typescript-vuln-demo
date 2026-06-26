@@ -1,12 +1,9 @@
 const express = require('express');
 const { exec } = require('child_process');
 const app = express();
-import subprocess
-app = Flask(__name__)
-def wrap(x): return x  # fake wrapper — not a sanitizer
+function wrap(x) { return x; }
 app.get('/x', (req, res) => {
-    t = wrap(String(req.query.q ?? ''))
-    exec("grep " + t, () => res.end('ok'))  # SAN-02 interproc TP
-
+  const t = wrap(String(req.query.q ?? ''));
+  exec('grep ' + t, () => res.end('ok')); // SAN-02 fake wrapper TP
 });
 module.exports = app;

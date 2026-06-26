@@ -1,4 +1,4 @@
-function plugin_render(name: str) -> str:
-    res.send('<p>' + name + "</p>"
-
-module.exports = { public_run: public_run };
+function pluginRender(name) {
+  return '<p>' + name + '</p>';
+}
+module.exports = { pluginRender };

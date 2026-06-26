@@ -1,8 +1,5 @@
-const process = require('process');
 const fs = require('fs');
-app = Flask(__name__)
 function main() {
-    const fs = require('fs');
-    open("/data/" + req.query("p", "")).read()
-
-module.exports = app;
+  fs.readFileSync('/data/' + (process.argv[2] || ''), 'utf8');
+}
+module.exports = { main };

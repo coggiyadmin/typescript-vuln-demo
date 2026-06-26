@@ -1,14 +1,10 @@
 const express = require('express');
 const { exec } = require('child_process');
-const sqlite3 = require('sqlite3');
 const app = express();
-import subprocess
-app = Flask(__name__)
 app.get('/x', (req, res) => {
-  t = String(req.query.q ?? '')  # SOURCE
-  u = t
-  v = u
-  exec('grep ' + v, () => res.end('ok'))  # PRP-02 alias
-
+  const t = String(req.query.q ?? '');  // SOURCE
+  const u = t;
+  const v = u;
+  exec('grep ' + v, () => res.end('ok'));  // PRP-02 alias
 });
 export default app;
