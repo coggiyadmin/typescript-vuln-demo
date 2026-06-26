@@ -1,9 +1,8 @@
-// c04 async × deserialize (TS parity)
-import express, { Request, Response } from 'express';
-const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
+import express from 'express';
 const app = express();
-app.post('/a', async (req: Request, res: Response) => {
-  const v = await later(String(req.body.q ?? ''));
-  res.end(v);
+app.get('/async', async (req, res) => {
+  const uid = await Promise.resolve(String(req.query.uid ?? ''));
+  JSON.parse(uid); // deser sink shape
+  res.end('ok');
 });
 export default app;
