@@ -1,11 +1,9 @@
-import express from 'express';
-import { MongoClient } from 'mongodb';
+// c04 async × nosql (TS parity)
+import express, { Request, Response } from 'express';
+const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
 const app = express();
-const db = new MongoClient('mongodb://localhost').db('app');
-app.use(express.json());
-app.get('/async', async (req, res) => {
-  const uid = await Promise.resolve(String(req.query.uid ?? ''));
-  db.collection('users').findOne({ user: uid, active: true });
-  res.end('ok');
+app.post('/a', async (req: Request, res: Response) => {
+  const v = await later(String(req.body.q ?? ''));
+  res.end(v);
 });
 export default app;

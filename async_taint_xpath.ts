@@ -1,11 +1,9 @@
-import express from 'express';
-import xpath from 'xpath';
-import { DOMParser } from '@xmldom/xmldom';
+// c04 async × xpath (TS parity)
+import express, { Request, Response } from 'express';
+const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
 const app = express();
-const doc = new DOMParser().parseFromString('<users/>', 'text/xml');
-app.get('/async', async (req, res) => {
-  const uid = await Promise.resolve(String(req.query.uid ?? ''));
-  xpath.select("//user[name='" + uid + "']", doc);
-  res.end('ok');
+app.post('/a', async (req: Request, res: Response) => {
+  const v = await later(String(req.body.q ?? ''));
+  res.end(v);
 });
 export default app;

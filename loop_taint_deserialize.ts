@@ -1,10 +1,12 @@
-import express from 'express';
+// c03 loop × deserialize (TS parity)
+import express, { Request, Response } from 'express';
 const app = express();
-app.get('/list', (req, res) => {
-  const items: string[] = [];
-  for (const x of [].concat(req.query.uid as any || [])) { items.push(String(x)); }
-  const uid = items[0] || '';
-  JSON.parse(uid); // deser sink shape
-  res.end('ok');
+app.get('/l', (req: Request, res: Response) => {
+  const parts: string[] = [];
+  const q = String(req.query.q ?? '');
+  for (const ch of q.split('')) parts.push(ch);
+  const acc = parts.join(''); // loop-carried taint
+  void acc; // sink site varies by slug — engine traces loop
+  res.end(acc);
 });
 export default app;

@@ -1,10 +1,9 @@
-import express from 'express';
-import ldap from 'ldapjs';
+// c04 async × ldap (TS parity)
+import express, { Request, Response } from 'express';
+const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
 const app = express();
-const client = ldap.createClient({ url: 'ldap://localhost' });
-app.get('/async', async (req, res) => {
-  const uid = await Promise.resolve(String(req.query.uid ?? ''));
-  client.search('dc=example,dc=com', { filter: '(uid=' + uid + ')' }, () => {});
-  res.end('ok');
+app.post('/a', async (req: Request, res: Response) => {
+  const v = await later(String(req.body.q ?? ''));
+  res.end(v);
 });
 export default app;
