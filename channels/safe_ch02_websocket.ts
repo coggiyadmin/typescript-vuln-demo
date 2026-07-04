@@ -1,4 +1,6 @@
-function esc(s: string) {
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] ?? c));
-}
-export function safeWs(msg: string) { return esc(msg); }
+#!/bin/bash
+# TN — serverless cmd token validated.
+set -euo pipefail
+val="$1"
+[[ "$val" =~ ^[a-z0-9_-]+$ ]] || exit 1
+echo "$val"
