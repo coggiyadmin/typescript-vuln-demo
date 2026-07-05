@@ -1,9 +1,13 @@
-// c04 async × xpath (TS parity)
 import express, { Request, Response } from 'express';
-const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
+import * as xpath from 'xpath';
+import { DOMParser } from '@xmldom/xmldom';
+
+const doc = new DOMParser().parseFromString('<users/>', 'text/xml');
 const app = express();
+const later = (v: string) => new Promise<string>((r) => setImmediate(() => r(v)));
 app.post('/a', async (req: Request, res: Response) => {
-  const v = await later(String(req.body.q ?? ''));
-  res.end(v);
+  const name = await later(String(req.body.q ?? '')); // taint through await
+  xpath.select("//user[name='" + name + "']", doc); // SINK CWE-643
+  res.end('ok');
 });
 export default app;
