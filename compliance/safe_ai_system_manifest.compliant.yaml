@@ -1,0 +1,11 @@
+# EU AI Act — high-risk system with declared obligations.
+system:
+  name: hiring-screener
+  purpose: automated employment decisions
+  risk_tier: high
+  transparency:
+    users_informed: true
+  human_oversight:
+    reviewer_required: true
+  risk_management: documented
+  logging: enabled

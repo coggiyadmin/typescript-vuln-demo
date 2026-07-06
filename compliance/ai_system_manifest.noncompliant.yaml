@@ -1,0 +1,6 @@
+# EU AI Act — high-risk system missing Art. 9/10/14/50 obligations.
+system:
+  name: hiring-screener
+  purpose: automated employment decisions
+  risk_tier: high
+  # missing: transparency, human_oversight, risk_management, logging
