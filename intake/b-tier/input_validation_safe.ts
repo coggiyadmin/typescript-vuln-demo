@@ -9,8 +9,7 @@ app.get('/transfer', (req: Request, res: Response) => {
   if (!Number.isFinite(amount) || amount <= 0 || amount > MAX) {
     return res.status(400).end('bad amount');
   }
-  const to = String(req.query.to ?? '');
-  res.end(`xfer ${amount} to ${to}`);
+  res.end('xfer ' + amount);
 });
 
 export default app;
